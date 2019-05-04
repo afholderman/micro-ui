@@ -1,4 +1,6 @@
 import { combineReducers, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+
 import { reducerRegistry, Reducers } from "./reducerRegistry";
 
 const initialState = {};
@@ -14,7 +16,7 @@ const combine = (reducers: Reducers) => {
 };
 
 const reducer = combine(reducerRegistry.getReducers());
-export const store = createStore(reducer, initialState);
+export const store = createStore(reducer, initialState, composeWithDevTools());
 
 reducerRegistry.setChangeListener((reducers: Reducers) => {
   store.replaceReducer(combine(reducers));
