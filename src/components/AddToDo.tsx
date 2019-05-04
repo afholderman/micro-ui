@@ -1,24 +1,38 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Input, Button, Row, Col, Form } from "antd";
+
 import { addToDo } from "./ToDo/store";
 
 export const AddToDo: React.FC = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [value, setValue] = useState<string>("");
+
   const dispatch = useDispatch();
-  const onSubmit = (e: React.FormEvent) => {
+
+  const saveToDo = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputRef!.current!.value.trim()) {
+    if (!value) {
       return;
     }
-    dispatch(addToDo(inputRef!.current!.value));
-    inputRef!.current!.value = "";
+    dispatch(addToDo(value));
+    setValue("");
   };
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(e.target.value);
+
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input type="text" ref={inputRef} />
-      </form>
-    </div>
+    <Form onSubmit={saveToDo}>
+      <Row type="flex" justify="space-between">
+        <Col span={18}>
+          <Input type="text" {...{ value, onChange }} />
+        </Col>
+        <Col>
+          <Button type="primary" htmlType="button" onClick={saveToDo}>
+            Add ToDo
+          </Button>
+        </Col>
+      </Row>
+    </Form>
   );
 };

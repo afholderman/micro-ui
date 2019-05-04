@@ -1,14 +1,18 @@
 import React from "react";
-import "./App.css";
+import { Row, Col } from "antd";
+
 import { AddToDo } from "./components/AddToDo";
 import { ToDoList } from "./components/ToDoList";
+import "antd/dist/antd.css";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <AddToDo />
-      <ToDoList />
-    </div>
+    <Row type="flex" justify="center" className="App">
+      <Col sm={{ span: 22 }} md={{ span: 18 }} lg={{ span: 12 }}>
+        <ToDoList />
+        <AddToDo />
+      </Col>
+    </Row>
   );
 };
 
