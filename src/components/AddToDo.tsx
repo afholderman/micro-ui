@@ -6,7 +6,6 @@ import { addToDo } from "./ToDo/store";
 
 export const AddToDo: React.FC = () => {
   const [value, setValue] = useState<string>("");
-
   const dispatch = useDispatch();
 
   const saveToDo = (e: React.FormEvent) => {

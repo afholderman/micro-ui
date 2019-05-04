@@ -14,10 +14,6 @@ let nextToDoId = 0;
 
 export const ADD_TODO = createActionName(reducerName, "ADD_TODO");
 export const TOGGLE_TODO = createActionName(reducerName, "TOGGLE_TODO");
-// export const SET_VISIBILITY_FILTER = createActionName(
-//   reducerName,
-//   "SET_VISIBILITY_FILTER"
-// );
 
 type AddToDoAction = {
   type: string;
@@ -41,25 +37,6 @@ export const toggleToDo = (id: number): ToggleToDoAction => ({
   id
 });
 
-// export enum VisibilityFilters {
-//   SHOW_ALL = "SHOW_ALL",
-//   SHOW_COMPLETED = "SHOW_COMPLETED",
-//   SHOW_ACTIVE = "SHOW_ACTIVE"
-// }
-
-// type SetVisibilityFilterAction = {
-//   type: string;
-//   filter: VisibilityFilters;
-// };
-
-// export const setVisibilityFilter = (
-//   filter: VisibilityFilters
-// ): SetVisibilityFilterAction => ({
-//   type: SET_VISIBILITY_FILTER,
-//   filter
-// });
-
-// reducer
 const reducer = (
   state = initialState,
   action: AddToDoAction | ToggleToDoAction
@@ -85,4 +62,4 @@ const reducer = (
 
 reducerRegistry.register(reducerName, reducer);
 
-export const selectAllToDos = (state: any) => state[reducerName];
+export const selectAllToDos = (state: any): ToDoState => state[reducerName];
