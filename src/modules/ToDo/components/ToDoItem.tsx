@@ -8,7 +8,11 @@ interface ToDoProps {
   text: string;
 }
 
-export const ToDo: React.SFC<ToDoProps> = ({ onChange, completed, text }) => (
+export const ToDoItem: React.SFC<ToDoProps> = ({
+  onChange,
+  completed,
+  text
+}) => (
   <ListItem>
     <Checkbox checked={completed} {...{ onChange }}>
       {text}

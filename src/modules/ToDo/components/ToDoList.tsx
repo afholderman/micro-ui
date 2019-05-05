@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { List } from "antd";
 
-import { selectAllToDos, toggleToDo, ToDoState, IToDo } from "./ToDo/store";
-import { ToDo } from "./ToDo/ToDo";
+import { selectAllToDos, toggleToDo, ToDoState, IToDo } from "../store";
+import { ToDoItem } from "./ToDoItem";
 
 export const ToDoList: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export const ToDoList: React.FC = () => {
       header={<h3>To Do:</h3>}
       bordered
       renderItem={(todo: IToDo) => (
-        <ToDo
+        <ToDoItem
           key={todo.id}
           {...todo}
           onChange={() => dispatch(toggleToDo(todo.id))}

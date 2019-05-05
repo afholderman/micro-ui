@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Input, Button, Row, Col, Form } from "antd";
 
-import { addToDo } from "./ToDo/store";
+import { addToDo } from "../store";
 
 export const AddToDo: React.FC = () => {
   const [value, setValue] = useState<string>("");

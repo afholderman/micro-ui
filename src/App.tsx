@@ -1,18 +1,38 @@
-import React from "react";
-import { Row, Col } from "antd";
+import React, { useState } from "react";
+import { Row, Menu } from "antd";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import { AddToDo } from "./components/AddToDo";
-import { ToDoList } from "./components/ToDoList";
 import "antd/dist/antd.css";
+import { ToDoModule } from "./modules/ToDo";
+const MenuItem = Menu.Item;
+
+export enum Routes {
+  HOME = "/",
+  TODO = "/todo"
+}
 
 const App: React.FC = () => {
+  const [current, setCurrent] = useState<string>("/");
   return (
-    <Row type="flex" justify="center" className="App">
-      <Col sm={{ span: 22 }} md={{ span: 18 }} lg={{ span: 12 }}>
-        <ToDoList />
-        <AddToDo />
-      </Col>
-    </Row>
+    <Router>
+      <Menu
+        mode="horizontal"
+        selectedKeys={[current]}
+        defaultSelectedKeys={[Routes.HOME]}
+        onClick={e => setCurrent(e.key)}
+      >
+        <MenuItem key={Routes.HOME}>
+          <Link to={Routes.HOME}>Home</Link>
+        </MenuItem>
+        <MenuItem key={Routes.TODO}>
+          <Link to={Routes.TODO}>ToDo</Link>
+        </MenuItem>
+      </Menu>
+      <Row type="flex" justify="center" className="App">
+        <Route exact path={Routes.HOME} render={() => <div>Home</div>} />
+        <Route path={Routes.TODO} component={ToDoModule} />
+      </Row>
+    </Router>
   );
 };
 
