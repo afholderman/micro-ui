@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { Row, Menu } from "antd";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import "antd/dist/antd.css";
-import { ToDoModule } from "./modules/ToDo";
-import { NoteModule } from "./modules/Notes";
+const ToDoModule = lazy(() => import("./modules/ToDo"));
+const NoteModule = lazy(() => import("./modules/Notes"));
 const MenuItem = Menu.Item;
 
 export enum Routes {
   HOME = "/",
   TODO = "/todos",
-  NOTE = "/notes"
+  NOTE = "/notesdotnet"
 }
 
 const App: React.FC = () => {
@@ -34,11 +34,13 @@ const App: React.FC = () => {
         </MenuItem>
       </Menu>
       <Row type="flex" justify="center" className="App">
-        <Switch>
-          <Route exact path={Routes.HOME} render={() => <div>Home</div>} />
-          <Route path={Routes.TODO} component={ToDoModule} />
-          <Route path={Routes.NOTE} component={NoteModule} />
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route exact path={Routes.HOME} render={() => <div>Home</div>} />
+            <Route path={Routes.TODO} component={ToDoModule} />
+            <Route path={Routes.NOTE} component={NoteModule} />
+          </Switch>
+        </Suspense>
       </Row>
     </Router>
   );
