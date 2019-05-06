@@ -26,6 +26,8 @@ export const AddToDo: React.FC = () => {
         <Col span={18}>
           <Input type="text" {...{ value, onChange }} />
         </Col>
+      </Row>
+      <Row type="flex" justify="start">
         <Col>
           <Button type="primary" htmlType="button" onClick={saveToDo}>
             Add ToDo

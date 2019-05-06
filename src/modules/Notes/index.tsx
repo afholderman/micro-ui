@@ -1,16 +1,16 @@
 import React from "react";
 import { Col } from "antd";
-import { ToDoList } from "./components/ToDoList";
-import { AddToDo } from "./components/AddToDo";
+import { NoteList } from "./components/NoteList";
+import { AddNote } from "./components/AddNote";
 import { ReducerRegistry } from "../../data/reducerRegistry";
 
-interface ToDoModuleProps {
+interface NoteModuleProps {
   reducerRegistry: ReducerRegistry;
 }
 
-export const ToDoModule: React.FC = () => (
+export const NoteModule: React.FC = () => (
   <Col sm={{ span: 22 }} md={{ span: 18 }} lg={{ span: 12 }}>
-    <ToDoList />
-    <AddToDo />
+    <NoteList />
+    <AddNote />
   </Col>
 );

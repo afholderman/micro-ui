@@ -43,11 +43,12 @@ const reducer = (
 ) => {
   switch (action.type) {
     case ADD_TODO:
+      const { id, text } = action as AddToDoAction;
       return [
         ...state,
         {
-          id: (action as AddToDoAction).id,
-          text: (action as AddToDoAction).text,
+          id,
+          text,
           completed: false
         }
       ];
